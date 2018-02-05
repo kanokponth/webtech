@@ -1,0 +1,54 @@
+#background{
+     width: 40%;
+     height: 800px;
+     float: left;
+
+
+     background-image: url("https://res.cloudinary.com/hhberclba/image/upload/v1463502178/flkobalzrysamkanklhr.jpg");
+}
+#mainbackground{
+
+    height: 650px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-right: :50px;
+
+
+
+}
+#object1{
+    height: 100px;
+    font-size: 500%;
+    margin-top: 105px;
+    margin-left:50px;
+
+
+    color: white;
+
+}
+#number1{
+    margin-left:215px;
+
+}
+#number2{
+    margin-left:215px;
+
+}
+
+
+
+button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    display: inline-block;
+    cursor: pointer;
+    width: 40%;
+    height:70px;
+    margin-left: 135px;
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+    background-color: white;
+}

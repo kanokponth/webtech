@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GAME</title>
+    <link rel="stylesheet" type="text/css" href="background.css">
+    </head>
+
+  <body>
+    <div id="background">
+        <div ></div>
+        <div ></div>
+
+        <div id="mainbackground">
+              <center><p id="object1" >แฟนพันธุ์แท้การ์ตูน</p></center>
+              <center><img src="" id="pic" style="display:none;width: 250px;height: 250px; float:left; margin-top: 10px; margin-left: 20px;"></center>
+
+
+              <button type="button" onclick="start()" id="number1" >เริ่มเกม </button>
+              <button type="button" id="number2" style="display:none"></button>
+              <button type="button" id="number3" style="display:none"></button>
+              <button type="button" id="number4" style="display:none"></button>
+          </div>
+    </div>
+
+
+      <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+      <script type="text/javascript">
+          var data;
+          var count;
+          var random;
+          var point = 0;
+          var numberarray = 25;
+          var backUp;
+          var max;
+          var str;
+
+              function start() {
+                $("#object1").text("เลือกจำนวนข้อ");
+                $("#number1").text("10 ข้อ");
+                $("#number2").text("20 ข้อ");
+                document.getElementById('number1').setAttribute( "onClick", "javascript: showpage(10);" );
+                document.getElementById('number2').setAttribute( "onClick", "javascript: showpage(20);" );
+                document.getElementById('number2').style.display = 'block';
+                document.getElementById('object1').style.display = 'block';
+
+
+
+              }
+
+              function showpage(number){
+                document.getElementById('number1').setAttribute( "onClick", "checkquestion('number1')" );
+                document.getElementById('number2').setAttribute( "onClick", "checkquestion('number2')" );
+                document.getElementById('number3').setAttribute( "onClick", "checkquestion('number3')" );
+                document.getElementById('number4').setAttribute( "onClick", "checkquestion('number4')" );
+                document.getElementById('number1').style.width = '200px';
+                document.getElementById('number1').style.marginLeft = '100px';
+                document.getElementById('number1').style.display = 'inline-block';
+                document.getElementById('number2').style.width = '200px';
+                document.getElementById('number2').style.marginLeft = '100px';
+                document.getElementById('number2').style.display = 'inline-block';
+                document.getElementById('number3').style.width = '200px';
+                document.getElementById('number3').style.marginLeft = '100px';
+                document.getElementById('number3').style.display = 'inline-block';
+                document.getElementById('number4').style.width = '200px';
+                document.getElementById('number4').style.marginLeft = '100px';
+                document.getElementById('number4').style.display = 'inline-block';
+                document.getElementById('object1').style.fontSize = '45px';
+                document.getElementById('object1').style.paddingTop = '30px';
+                count = number;
+                max = number;
+                choice();
+
+            }
+            function choice(){
+
+
+                  random = Math.floor(Math.random()*numberarray);
+
+                  str=data[random]["pic"];
+
+                  if(str==""){
+                    document.getElementById('number1').style.marginLeft = '110px';
+                    document.getElementById('number1').style.marginTop = '20px';
+                    document.getElementById('number2').style.marginLeft = '110px';
+                    document.getElementById('number3').style.marginLeft = '110px';
+                    document.getElementById('number3').style.marginTop = '25px';
+                    document.getElementById('number4').style.marginLeft = '110px';
+                    document.getElementById('pic').style.display = 'none';
+                  }
+                  else {
+                    document.getElementById('number1').style.marginTop = '1px';
+                    document.getElementById('number1').style.marginLeft = '100px';
+                    document.getElementById('number2').style.marginLeft = '100px';
+                    document.getElementById('number3').style.marginTop = '1px';
+                    document.getElementById('number3').style.marginLeft = '100px';
+                    document.getElementById('number4').style.marginTop = '1px';
+                    document.getElementById('number4').style.marginLeft = '450px';
+                    document.getElementById('pic').style.display = 'inline-block';
+                    document.getElementById("pic").src = data[random]["pic"];
+                    document.getElementById("pic").style.marginLeft = '100px';
+
+                  }
+
+                  $("#object1").text(data[random]["question"]);
+                  $("#number1").text(data[random]["1"]);
+                  $("#number2").text(data[random]["2"]);
+                  $("#number3").text(data[random]["3"]);
+                  $("#number4").text(data[random]["4"]);
+
+
+
+                  count = count-1;
+                  numberarray = numberarray -1;
+                  change();
+                  if( count == -1){
+
+                    endgame();
+                  }
+                }
+
+              function checkquestion(data1){
+                  if(document.getElementById(data1).textContent == data[random]["answer"]){
+                    point += 1;
+                  }
+                  data.splice(random,1);
+                  choice();
+                }
+
+                function endgame(){
+
+                  $("#object1").text("คุณได้คะแนน"+point+" / "+max);
+                  $("#number1").text("เล่นอีกครั้ง");
+                  document.getElementById('pic').style.display = 'none';
+                  document.getElementById('number4').style.display = 'none';
+                  document.getElementById('number1').setAttribute( "onClick", "playagain()" );
+                  document.getElementById('number2').style.display = 'none';
+                  document.getElementById('number3').style.display = 'none';
+                  document.getElementById('number4').style.display = 'none';
+                  document.getElementById('number1').style.marginLeft = '110px';
+                  document.getElementById('number1').style.marginTop = '70px';
+                  document.getElementById('number1').style.width = '70%';
+                  document.getElementById('number2').style.marginLeft = '170px';
+                  document.getElementById('number2').style.width = '70%';
+                  document.getElementById('object1').style.fontSize = '80px';
+                }
+                 function playagain(){
+                    document.getElementById('number1').setAttribute( "onClick", "start()" );
+                    document.getElementById('object1').style.fontSize = '500%';
+                    document.getElementById('number1').style.marginTop = '-13px';
+                    document.getElementById('number2').style.marginLeft = '120px';
+                    document.getElementById('number1').style.marginLeft = '120px';
+                    $("#number1").text("เริ่มเกม");
+                    $("#object1").text("แฟนพันธุ์แท้การ์ตูน");
+
+                    data = backUp.slice(0);
+                    count = 0;
+                    point = 0;
+                    numberarray = 25;
+                    random;
+                }
+                function change() {
+                  function go() {
+                    if(count>=0){
+                          choice();
+                    }
+                }
+              }
+                $(document).ready(function(){
+                     console.log("ready")
+                     $.ajax({
+                      url: 'question.json',
+                      method : 'GET',
+                      dataType: 'json',
+                      success : function(response) {
+                          console.log(response);
+                           data = response;
+                           backUp = data.slice(0);
+
+                        }
+                    });
+                  });
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
